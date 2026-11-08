@@ -1,0 +1,53 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no,viewport-fit=cover" />
+  <meta name="theme-color" content="#101114" />
+  <title>Ashen Vault — Roguelite</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700;800&family=Cinzel:wght@500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <main id="game-shell">
+    <canvas id="game"></canvas>
+    <div class="vignette"></div>
+    <header class="topbar">
+      <div class="brand"><div class="brand-mark">✦</div><div><div class="brand-title">ASHEN <span>VAULT</span></div><div class="brand-sub">THE SUNKEN SANCTUM</div></div></div>
+      <div class="run-info"><div class="run-label">DESCENT <span id="floor-number">01</span></div><div class="run-line"></div><div class="enemy-count"><i></i><span id="enemy-count">0</span> REMAINING</div></div>
+      <button id="pause-button" class="icon-button" aria-label="Pause">Ⅱ</button>
+    </header>
+    <section class="hud-left">
+      <div class="portrait-wrap"><div class="portrait"><span>⚔</span></div><span class="level-badge">LV <b id="level">1</b></span></div>
+      <div class="vitals">
+        <div class="vital-row"><span>VITALITY</span><span id="health-text">100 / 100</span></div>
+        <div class="bar health"><i id="health-bar"></i></div>
+        <div class="vital-row xp-label"><span>EXPERIENCE</span><span id="xp-text">0 / 40</span></div>
+        <div class="bar xp"><i id="xp-bar"></i></div>
+      </div>
+      <div class="stats"><span>✦ <b id="kills">0</b> slain</span><span>◈ <b id="shards">0</b> shards</span></div>
+    </section>
+    <div class="objective"><span class="objective-icon">⌖</span><div><b id="objective-title">CLEAR THE SANCTUM</b><small id="objective-sub">Defeat the restless dead</small></div></div>
+    <div id="toast" class="toast"></div>
+    <div class="ability-row">
+      <button class="ability potion" id="potion-button" aria-label="Drink healing potion"><span class="ability-icon">♜</span><span class="keycap">Q</span><span class="ability-count" id="potion-count">2</span></button>
+      <button class="ability dodge" id="dodge-button" aria-label="Dodge"><span class="ability-icon">➤</span><span class="keycap">SPACE</span></button>
+      <button class="ability attack" id="attack-button" aria-label="Attack"><span class="ability-icon">⚔</span><span class="keycap">CLICK</span></button>
+    </div>
+    <div class="mobile-controls" aria-label="Touch controls">
+      <div id="joystick" class="joystick"><div class="joy-ring"></div><div id="stick" class="stick"></div></div>
+      <div class="mobile-actions"><button id="mobile-dodge" class="touch-action dodge-touch">➤<small>DODGE</small></button><button id="mobile-attack" class="touch-action attack-touch">⚔<small>ATTACK</small></button></div>
+    </div>
+    <div id="start-screen" class="screen visible">
+      <div class="screen-panel intro-panel"><div class="eyebrow">A PROCEDURAL DUNGEON ROGUELITE</div><h1>THE ASHEN<br><em>VAULT</em></h1><p>Descend into the forgotten sanctum.<br>Survive the dead. Claim what remains.</p><div class="intro-rule"><span></span>✦<span></span></div><div class="class-chip"><span>⚔</span><div><b>THE WANDERER</b><small>SWORD &amp; SHADOW</small></div></div><button id="start-button" class="primary-button">ENTER THE VAULT <span>→</span></button><div class="controls-hint">WASD MOVE <i>·</i> CLICK ATTACK <i>·</i> SPACE DODGE <i>·</i> Q POTION</div></div>
+    </div>
+    <div id="pause-screen" class="screen"><div class="screen-panel small-panel"><div class="eyebrow">THE VAULT WAITS</div><h2>PAUSED</h2><p>Take a breath, Wanderer.</p><button id="resume-button" class="primary-button">RETURN TO BATTLE <span>→</span></button></div></div>
+    <div id="level-screen" class="screen"><div class="screen-panel level-panel"><div class="eyebrow">A MOMENT OF CLARITY</div><h2>POWER AWAKENS</h2><p>Choose your blessing</p><div id="upgrade-options" class="upgrade-options"></div></div></div>
+    <div id="end-screen" class="screen"><div class="screen-panel small-panel"><div class="eyebrow" id="end-eyebrow">THE DESCENT ENDS</div><h2 id="end-title">FALLEN</h2><p id="end-copy">The vault keeps its secrets.</p><div class="run-result"><span>ENEMIES SLAIN <b id="result-kills">0</b></span><span>FLOORS CLEARED <b id="result-floor">0</b></span></div><button id="restart-button" class="primary-button">DESCEND AGAIN <span>↻</span></button></div></div>
+    <div class="mobile-tip" id="mobile-tip">MOVE <b>◉</b> &nbsp; ATTACK <b>⚔</b></div>
+  </main>
+  <script type="module" src="game.js"></script>
+</body>
+</html>
